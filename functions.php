@@ -14,6 +14,7 @@ function hackmonks_setup() {
     // Register Navigation Menus
     register_nav_menus(array(
         'primary' => __('Primary Menu', 'hackmonks'),
+        'footer'  => __('Footer Menu', 'hackmonks'),
     ));
 }
 add_action('after_setup_theme', 'hackmonks_setup');
@@ -26,7 +27,7 @@ function hackmonks_scripts() {
     wp_enqueue_style('font-awesome', 'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css');
 
     // Enqueue Main Stylesheet
-    wp_enqueue_style('hackmonks-style', get_stylesheet_uri(), array(), '1.3.0');
+    wp_enqueue_style('hackmonks-style', get_stylesheet_uri(), array(), '1.4.0');
 
     // Enqueue TOC Script (only on single posts)
     if (is_single()) {

@@ -877,3 +877,39 @@ body.author .post-item {
         padding: 0 10px;
     }
 }
+
+/* ---------------------------------------------------------
+   14. FOOTER MENU
+--------------------------------------------------------- */
+.footer-navigation {
+    margin-bottom: 20px;
+}
+
+.footer-navigation ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+}
+
+.footer-navigation li {
+    margin: 0;
+}
+
+.footer-navigation a {
+    text-decoration: none;
+    color: var(--color-text-light);
+    font-family: var(--font-body);
+    /* Standard font */
+    font-size: 0.85rem;
+    font-weight: 600;
+    opacity: 0.8;
+    transition: opacity 0.2s;
+}
+
+.footer-navigation a:hover {
+    color: var(--color-accent);
+    opacity: 1;
+}
