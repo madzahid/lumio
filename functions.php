@@ -42,8 +42,10 @@ function hackmonks_downgrade_h1_to_h2($content) {
 add_filter('the_content', 'hackmonks_downgrade_h1_to_h2');
 // SEO Fallback: If Rank Math / Yoast are NOT active, generate basic tags
 function hackmonks_seo_fallback() {
-    // Check for Rank Math or Yoast - REMOVED to force output
-    // if (defined('RANK_MATH_VERSION') || defined('WPSEO_VERSION')) { return; }
+    // Check for Rank Math or Yoast
+    if (defined('RANK_MATH_VERSION') || defined('WPSEO_VERSION')) {
+        return;
+    }
 
     global $post;
     $desc = '';
