@@ -40,4 +40,49 @@ function hackmonks_downgrade_h1_to_h2($content) {
     return preg_replace('/<(\/?)h1(.*?)>/i', '<$1h2$2>', $content);
 }
 add_filter('the_content', 'hackmonks_downgrade_h1_to_h2');
+// SEO Fallback: If Rank Math / Yoast are NOT active, generate basic tags
+function hackmonks_seo_fallback() {
+    // Check for Rank Math or Yoast
+    if (defined('RANK_MATH_VERSION') || defined('WPSEO_VERSION')) {
+        return;
+    }
+
+    global $post;
+    $desc = '';
+    $title = get_bloginfo('name');
+    $url = home_url();
+
+    if (is_front_page() || is_home()) {
+        $desc = get_bloginfo('description');
+        $title = get_bloginfo('name') . ' - ' . $desc;
+    } elseif (is_single() || is_page()) {
+        $desc = get_the_excerpt();
+        $title = get_the_title() . ' - ' . get_bloginfo('name');
+        $url = get_permalink();
+    }
+
+    // Clean up description
+    $desc = strip_tags($desc);
+    $desc = trim($desc);
+    if (empty($desc)) {
+        $desc = get_bloginfo('description');
+    }
+
+    // Output Meta Tags
+    echo "\n<!-- Theme SEO Fallback -->\n";
+    echo '<meta name="description" content="' . esc_attr($desc) . '" />' . "\n";
+    
+    // Open Graph
+    echo '<meta property="og:title" content="' . esc_attr($title) . '" />' . "\n";
+    echo '<meta property="og:description" content="' . esc_attr($desc) . '" />' . "\n";
+    echo '<meta property="og:url" content="' . esc_url($url) . '" />' . "\n";
+    echo '<meta property="og:site_name" content="' . esc_attr(get_bloginfo('name')) . '" />' . "\n";
+    
+    // OG Image
+    if (has_post_thumbnail($post->ID)) {
+        $img = wp_get_attachment_image_src(get_post_thumbnail_id($post->ID), 'large');
+        echo '<meta property="og:image" content="' . esc_url($img[0]) . '" />' . "\n";
+    }
+}
+add_action('wp_head', 'hackmonks_seo_fallback', 1);
 ?>
