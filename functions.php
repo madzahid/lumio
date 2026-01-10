@@ -21,7 +21,7 @@ function hackmonks_scripts() {
     wp_enqueue_style('font-awesome', 'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css');
 
     // Enqueue Main Stylesheet
-    wp_enqueue_style('hackmonks-style', get_stylesheet_uri(), array(), '1.0.0');
+    wp_enqueue_style('hackmonks-style', get_stylesheet_uri(), array(), '1.0.1');
 
     // Enqueue TOC Script (only on single posts)
     if (is_single()) {
