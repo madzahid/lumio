@@ -312,6 +312,22 @@ h3 {
     position: relative;
 }
 
+/* Post Content Links */
+.entry-content a {
+    color: var(--color-accent);
+    text-decoration: underline;
+    text-decoration-thickness: 2px;
+    text-underline-offset: 3px;
+    font-weight: 600;
+}
+
+.entry-content a:hover {
+    color: var(--color-text-main);
+    background: rgba(135, 206, 235, 0.2);
+    /* Soft highlight on hover */
+    border-radius: 4px;
+}
+
 /* ---------------------------------------------------------
    6. FOOTER
 --------------------------------------------------------- */
