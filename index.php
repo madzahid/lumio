@@ -68,6 +68,15 @@
                         <?php echo wp_trim_words(get_the_excerpt(), 25); ?>
                     </div>
                 </div>
+
+                <!-- Featured Image Column (Right) -->
+                <?php if (has_post_thumbnail()) : ?>
+                    <div class="post-image-col">
+                        <a href="<?php the_permalink(); ?>" class="post-list-thumb">
+                            <?php the_post_thumbnail('medium_large', array('style' => 'width:100%; height:100%; object-fit:cover; border-radius:12px;')); ?>
+                        </a>
+                    </div>
+                <?php endif; ?>
             </article>
         <?php endwhile; endif; ?>
     </div>

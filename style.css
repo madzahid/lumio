@@ -454,11 +454,33 @@ h3 {
 
 .post-item {
     display: grid;
-    grid-template-columns: 80px 1fr !important;
-    /* Force Grid */
-    gap: 30px;
+    /* 3 Columns: Author | Content | Image (if exists) */
+    grid-template-columns: 80px 1fr 220px;
+    gap: 40px;
     padding: 50px 0;
     border-top: 1px solid rgba(0, 0, 0, 0.08);
+    align-items: center;
+    /* Vertically center content */
+}
+
+/* If no thumbnail, fallback to 2 columns */
+.post-item:not(:has(.post-image-col)) {
+    grid-template-columns: 80px 1fr;
+}
+
+.post-list-thumb {
+    display: block;
+    width: 100%;
+    aspect-ratio: 16/10;
+    /* Landscape rectangle */
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+    transition: transform 0.2s;
+}
+
+.post-list-thumb:hover {
+    transform: translateY(-4px);
 }
 
 /* Override for Author Archive (No redundant avatar) */
@@ -497,7 +519,7 @@ body.author .post-item {
     text-align: center;
 }
 
-@media (max-width: 600px) {
+@media (max-width: 900px) {
     .post-item {
         grid-template-columns: 1fr !important;
         /* Stack on mobile */
@@ -511,6 +533,19 @@ body.author .post-item {
         align-items: center;
         justify-content: center;
         gap: 10px;
+        order: 1;
+        /* Author first */
+    }
+
+    .post-image-col {
+        order: 2;
+        /* Image second */
+        margin-bottom: 20px;
+    }
+
+    .post-content {
+        order: 3;
+        /* Content last */
     }
 
     .home-author-img {
@@ -693,22 +728,26 @@ body.author .post-item {
     gap: 10px;
     margin-top: 40px;
     padding-top: 30px;
-    border-top: 1px solid rgba(0,0,0,0.05);
+    border-top: 1px solid rgba(0, 0, 0, 0.05);
 }
 
 .post-tags a {
     display: inline-block;
-    background: #F3F4F6; /* Neutral pill background */
-    color: var(--color-text-light); /* Darker text for contrast */
+    background: #F3F4F6;
+    /* Neutral pill background */
+    color: var(--color-text-light);
+    /* Darker text for contrast */
     padding: 8px 18px;
-    border-radius: 50px; /* Full pill shape */
+    border-radius: 50px;
+    /* Full pill shape */
     font-size: 0.85rem;
     font-weight: 700;
     text-transform: uppercase;
     letter-spacing: 0.5px;
     transition: all 0.2s ease;
     text-decoration: none;
-    border: 1px solid transparent; /* Prepare for border transition */
+    border: 1px solid transparent;
+    /* Prepare for border transition */
 }
 
 /* Hover Effect - Pop like the categories */
@@ -716,7 +755,8 @@ body.author .post-item {
     background: var(--color-accent);
     color: #fff;
     transform: translateY(-2px);
-    box-shadow: 0 4px 12px rgba(135, 206, 235, 0.4); /* Soft shadow based on accent */
+    box-shadow: 0 4px 12px rgba(135, 206, 235, 0.4);
+    /* Soft shadow based on accent */
 }
 
 /* Add a label potentially? Optional based on design preference. 
