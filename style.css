@@ -777,3 +777,33 @@ body.author .post-item {
 
 /* Add a label potentially? Optional based on design preference. 
    For now, just the tags themselves are enough. */
+
+/* ---------------------------------------------------------
+   13. MOBILE RESPONSIVENESS FIXES (v10)
+--------------------------------------------------------- */
+@media (max-width: 768px) {
+
+    /* Fix: Single Post Padding */
+    .single-container {
+        padding-left: 20px;
+        padding-right: 20px;
+        overflow-x: hidden;
+        /* Prevent horizontal scroll */
+    }
+
+    /* Ensure content wrapper fits within the padding */
+    .content-wrapper-context {
+        width: 100%;
+        max-width: 100%;
+    }
+
+    /* Adjust headers for small screens */
+    .single-title {
+        font-size: 2rem !important;
+    }
+
+    /* Ensure no negative margins pull content out */
+    .entry-content {
+        padding: 0;
+    }
+}
