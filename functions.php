@@ -102,9 +102,19 @@ function hackmonks_get_custom_avatar($avatar, $id_or_email, $args) {
     if ($user && is_object($user)) {
         $custom_avatar_id = get_user_meta($user->ID, 'custom_avatar_id', true);
         if ($custom_avatar_id) {
-            $image = wp_get_attachment_image_src($custom_avatar_id, 'thumbnail'); // Use 'thumbnail' (150px) or 'medium'
+            $image = wp_get_attachment_image_src($custom_avatar_id, 'thumbnail'); 
             if ($image) {
-                return "<img alt='{$user->display_name}' src='{$image[0]}' class='avatar avatar-{$args['size']} photo' height='{$args['size']}' width='{$args['size']}' style='border-radius:50%;' />";
+                // Merge passed classes (like 'profile-img-large') with default avatar classes
+                $classes = 'avatar avatar-' . $args['size'] . ' photo';
+                if (!empty($args['class'])) {
+                    if (is_array($args['class'])) {
+                        $classes .= ' ' . implode(' ', $args['class']);
+                    } else {
+                        $classes .= ' ' . $args['class'];
+                    }
+                }
+                
+                return "<img alt='{$user->display_name}' src='{$image[0]}' class='{$classes}' height='{$args['size']}' width='{$args['size']}' style='border-radius:50%;' />";
             }
         }
     }
