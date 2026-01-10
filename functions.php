@@ -10,6 +10,11 @@ function hackmonks_setup() {
     
     // Add HTML5 support
     add_theme_support('html5', array('search-form', 'comment-form', 'comment-list', 'gallery', 'caption'));
+
+    // Register Navigation Menus
+    register_nav_menus(array(
+        'primary' => __('Primary Menu', 'hackmonks'),
+    ));
 }
 add_action('after_setup_theme', 'hackmonks_setup');
 

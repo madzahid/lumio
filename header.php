@@ -20,6 +20,17 @@
                     </div>
                 <?php endif; ?>
             </div>
+
+            <nav class="main-navigation">
+                <?php
+                wp_nav_menu(array(
+                    'theme_location' => 'primary',
+                    'menu_id'        => 'primary-menu',
+                    'container'      => false,
+                    'fallback_cb'    => false,
+                ));
+                ?>
+            </nav>
         </div>
     </header>
 
