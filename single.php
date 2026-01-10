@@ -61,7 +61,7 @@
 
                     <!-- Tags -->
                     <?php if (has_tag()) : ?>
-                        <div class="post-tags" style="margin-top: 30px;">
+                        <div class="post-tags">
                             <?php the_tags('', '', ''); ?>
                         </div>
                     <?php endif; ?>

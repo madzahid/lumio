@@ -683,3 +683,41 @@ body.author .post-item {
         padding-left: 15px;
     }
 }
+
+/* ---------------------------------------------------------
+   12. TAGS - PREMIUM PILLS
+--------------------------------------------------------- */
+.post-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-top: 40px;
+    padding-top: 30px;
+    border-top: 1px solid rgba(0,0,0,0.05);
+}
+
+.post-tags a {
+    display: inline-block;
+    background: #F3F4F6; /* Neutral pill background */
+    color: var(--color-text-light); /* Darker text for contrast */
+    padding: 8px 18px;
+    border-radius: 50px; /* Full pill shape */
+    font-size: 0.85rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    transition: all 0.2s ease;
+    text-decoration: none;
+    border: 1px solid transparent; /* Prepare for border transition */
+}
+
+/* Hover Effect - Pop like the categories */
+.post-tags a:hover {
+    background: var(--color-accent);
+    color: #fff;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(135, 206, 235, 0.4); /* Soft shadow based on accent */
+}
+
+/* Add a label potentially? Optional based on design preference. 
+   For now, just the tags themselves are enough. */
