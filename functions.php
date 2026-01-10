@@ -85,4 +85,39 @@ function hackmonks_seo_fallback() {
     }
 }
 add_action('wp_head', 'hackmonks_seo_fallback', 1);
+// --- Simple Local Avatars (No Plugin Required) ---
+// 1. Filter get_avatar to check for custom user meta
+add_filter('pre_get_avatar', 'hackmonks_get_custom_avatar', 10, 3);
+function hackmonks_get_custom_avatar($avatar, $id_or_email, $args) {
+    $user = false;
+    
+    if (is_numeric($id_or_email)) {
+        $user = get_user_by('id', absint($id_or_email));
+    } elseif (is_object($id_or_email) && !empty($id_or_email->user_id)) {
+        $user = get_user_by('id', absint($id_or_email->user_id));
+    } elseif (is_email($id_or_email)) {
+        $user = get_user_by('email', $id_or_email);
+    }
+
+    if ($user && is_object($user)) {
+        $custom_avatar_id = get_user_meta($user->ID, 'custom_avatar_id', true);
+        if ($custom_avatar_id) {
+            $image = wp_get_attachment_image_src($custom_avatar_id, 'thumbnail'); // Use 'thumbnail' (150px) or 'medium'
+            if ($image) {
+                return "<img alt='{$user->display_name}' src='{$image[0]}' class='avatar avatar-{$args['size']} photo' height='{$args['size']}' width='{$args['size']}' style='border-radius:50%;' />";
+            }
+        }
+    }
+    return $avatar;
+}
+
+// 2. Register User Meta for REST API
+add_action('rest_api_init', 'hackmonks_register_avatar_meta');
+function hackmonks_register_avatar_meta() {
+    register_meta('user', 'custom_avatar_id', array(
+        'type' => 'integer',
+        'single' => true,
+        'show_in_rest' => true,
+    ));
+}
 ?>
