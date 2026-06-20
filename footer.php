@@ -1,5 +1,13 @@
     </div><!-- .site-content -->
 
+    <?php if ( is_active_sidebar( 'footer-widgets' ) ) : ?>
+    <div class="footer-widgets">
+        <div class="container">
+            <?php dynamic_sidebar( 'footer-widgets' ); ?>
+        </div>
+    </div>
+    <?php endif; ?>
+
     <footer class="site-footer">
         <div class="container">
             <nav class="footer-navigation">
@@ -21,25 +29,5 @@
     </footer>
 
     <?php wp_footer(); ?>
-    <script>
-    (function() {
-        var btn = document.getElementById('search-toggle');
-        var bar = document.getElementById('search-bar');
-        if (btn && bar) {
-            btn.addEventListener('click', function() {
-                var hidden = bar.hasAttribute('hidden');
-                if (hidden) {
-                    bar.removeAttribute('hidden');
-                    bar.querySelector('.search-field') && bar.querySelector('.search-field').focus();
-                } else {
-                    bar.setAttribute('hidden', '');
-                }
-            });
-            document.addEventListener('keydown', function(e) {
-                if (e.key === 'Escape') bar.setAttribute('hidden', '');
-            });
-        }
-    })();
-    </script>
 </body>
 </html>

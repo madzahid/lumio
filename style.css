@@ -4,7 +4,7 @@ Theme URI: https://xuro.net/lumio
 Author: Zahid Abbasi
 Author URI: https://xuro.net
 Description: A clean, minimal WordPress theme for high-performance blogs. Features Syne & Figtree typography, a radial glow hero section, pastel category cards, and a floating table of contents on single posts. Built for speed, readability, and SEO.
-Version: 1.0.2
+Version: 1.0.3
 Requires at least: 6.0
 Tested up to: 7.0
 Requires PHP: 7.4
@@ -1088,4 +1088,26 @@ body.author .post-item {
     justify-content: space-between;
     flex-wrap: wrap;
     gap: 16px;
+}
+
+/* Footer Widgets */
+.footer-widgets {
+    border-top: 1px solid rgba(0,0,0,0.07);
+    padding: 48px 0;
+    background: var(--color-bg);
+}
+.footer-widgets .container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 32px;
+}
+.footer-widgets .widget {
+    flex: 1;
+    min-width: 200px;
+}
+.footer-widgets .widget-title {
+    font-family: var(--font-head);
+    font-size: 1rem;
+    font-weight: 700;
+    margin-bottom: 16px;
 }
