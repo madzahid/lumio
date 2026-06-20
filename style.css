@@ -145,6 +145,20 @@ h3 {
     font-weight: 800;
     font-size: 1.5rem;
     letter-spacing: -1px;
+    flex-shrink: 0;
+}
+
+.site-title,
+.site-title a {
+    font-family: var(--font-head);
+    font-size: 1.5rem;
+    font-weight: 800;
+    letter-spacing: -1px;
+    color: var(--color-text-main);
+    text-decoration: none;
+    margin: 0;
+    padding: 0;
+    line-height: 1.2;
 }
 
 .site-branding a:hover {
@@ -155,8 +169,8 @@ h3 {
    2b. NAVIGATION MENU
 --------------------------------------------------------- */
 .main-navigation {
-    margin-top: 15px;
-    width: 100%;
+    flex: 1;
+    margin-left: 32px;
 }
 
 .main-navigation ul {
