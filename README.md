@@ -11,13 +11,13 @@ A clean, fast WordPress theme built for high-performance blogs. Bold Syne typogr
 ## Screenshots
 
 ### Homepage — Hero Section
-![Lumio hero section with radial glow background and centered heading](https://lumio.xuro.net/screenshots/screenshot-hero.png)
+![Lumio hero section with radial glow background and centered heading](screenshots/screenshot-hero.png)
 
 ### Homepage — Category Cards
-![Lumio pastel category card grid showing Cybersecurity, AI, Technology, Quantum Computing, Robotics and Smart Home](https://lumio.xuro.net/screenshots/screenshot-cards.png)
+![Lumio pastel category card grid showing Cybersecurity, AI, Technology, Quantum Computing, Robotics and Smart Home](screenshots/screenshot-cards.png)
 
 ### Single Post
-![Lumio single post layout with author meta, featured image and floating table of contents](https://lumio.xuro.net/screenshots/screenshot-single.png)
+![Lumio single post layout with author meta, featured image and floating table of contents](screenshots/screenshot-single.png)
 
 ---
 
