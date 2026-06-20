@@ -27,6 +27,11 @@ function lumio_setup() {
 }
 add_action('after_setup_theme', 'lumio_setup');
 
+function lumio_robots_meta() {
+    echo '<meta name="robots" content="max-image-preview:large">' . "\n";
+}
+add_action( 'wp_head', 'lumio_robots_meta' );
+
 function lumio_scripts() {
     // Google Fonts (Syne + Figtree)
     wp_enqueue_style('lumio-fonts', 'https://fonts.googleapis.com/css2?family=Figtree:wght@400;600&family=Syne:wght@400;700;800&display=swap', array(), null);

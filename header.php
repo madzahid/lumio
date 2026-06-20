@@ -3,15 +3,7 @@
 <head>
     <meta charset="<?php bloginfo('charset'); ?>">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="robots" content="max-image-preview:large">
     <?php wp_head(); ?>
-    <style>
-    .site-header .container{display:flex!important;align-items:center!important;justify-content:space-between!important;flex-wrap:nowrap!important;gap:16px!important;}
-    .search-toggle{background:none!important;border:none!important;cursor:pointer;color:#262626;padding:8px;border-radius:6px;display:flex!important;align-items:center;margin-left:auto!important;flex-shrink:0;}
-    .search-toggle:hover{color:#87CEEB;background:rgba(135,206,235,0.12)!important;}
-    .main-navigation{flex:1;margin-left:32px;}
-    .site-title,.site-title a{font-size:1.5rem!important;font-weight:800;color:#262626;text-decoration:none;margin:0;padding:0;}
-    </style>
 </head>
 <body <?php body_class(); ?>>
 <?php wp_body_open(); ?>
