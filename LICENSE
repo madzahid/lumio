@@ -1,0 +1,32 @@
+GNU GENERAL PUBLIC LICENSE
+Version 2, June 1991
+
+Copyright (C) 2026 Zahid Abbasi — https://xuro.net
+
+Lumio WordPress Theme is free software: you can redistribute it and/or
+modify it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 2 of the License, or (at your
+option) any later version.
+
+Lumio is distributed in the hope that it will be useful, but WITHOUT ANY
+WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR
+A PARTICULAR PURPOSE. See the GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License along with
+this program. If not, see https://www.gnu.org/licenses/gpl-2.0.html
+
+---
+
+Design Inspiration
+------------------
+The visual design of Lumio (pastel card colours, typography pairing, and
+layout patterns) is inspired by the Array theme for Ghost CMS by Bright Themes
+(https://brightthemes.com/themes/array). Array is a commercial Ghost theme;
+no code from Array was used or adapted. The WordPress PHP/CSS implementation
+of Lumio is entirely original work by Zahid Abbasi, written from scratch
+for WordPress, and is licensed under GPL v2 or later.
+
+Third-Party Resources
+---------------------
+- Google Fonts: Syne & Figtree — https://fonts.google.com (Open Font License)
+- Social share icons: Inline SVGs derived from Font Awesome Free — https://fontawesome.com (Font Awesome Free License, CC BY 4.0 for icons)

@@ -1,0 +1,961 @@
+/*
+Theme Name: Lumio
+Theme URI: https://xuro.net/lumio
+Author: Zahid Abbasi
+Author URI: https://xuro.net
+Description: A clean, minimal WordPress theme for high-performance blogs. Features Syne & Figtree typography, a radial glow hero section, pastel category cards, and a floating table of contents on single posts. Built for speed, readability, and SEO.
+Version: 1.0.0
+Requires at least: 6.0
+Tested up to: 7.0
+Requires PHP: 7.4
+License: GNU General Public License v2 or later
+License URI: https://www.gnu.org/licenses/gpl-2.0.html
+Text Domain: lumio
+Tags: blog, custom-menu, featured-images, sticky-post, threaded-comments, translation-ready, one-column, two-columns, grid-layout, wide-blocks
+
+Copyright: 2026 Zahid Abbasi
+License: GNU General Public License v2 or later
+License URI: https://www.gnu.org/licenses/gpl-2.0.html
+
+Lumio WordPress Theme, Copyright 2026 Zahid Abbasi
+Lumio is distributed under the terms of the GNU GPL.
+*/
+
+/* ---------------------------------------------------------
+   1. VARIABLES & RESET
+--------------------------------------------------------- */
+:root {
+    --font-head: 'Syne', sans-serif;
+    --font-body: 'Figtree', sans-serif;
+
+    --color-bg: #FFFFFF;
+    --color-text-main: #262626;
+    /* Charcoal */
+    --color-text-light: #525252;
+    --color-accent: #87CEEB;
+    /* Sky Blue */
+
+    /* Extracted Arrays Pastels */
+    --color-pastel-purple: #D7AFFD;
+    --color-pastel-cyan: #95F4F4;
+    --color-pastel-yellow: #F9E46C;
+    --color-pastel-red: #FBA298;
+    --color-pastel-green: #89ECB4;
+
+    --shadow-card: inset 0 -2px 0 rgba(0, 0, 0, 0.15);
+    --shadow-card-hover: inset 0 -5px 0 rgba(0, 0, 0, 0.15);
+
+    --radius-lg: 24px;
+    --radius-md: 12px;
+    --radius-sm: 8px;
+    /* Button Radius */
+
+    --container: 1200px;
+    --gap: 40px;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    background-color: var(--color-bg);
+    color: var(--color-text-main);
+    font-family: var(--font-body);
+    font-size: 19px;
+    /* Slightly larger for that modern feel */
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+}
+
+a {
+    color: inherit;
+    text-decoration: none;
+    transition: 0.2s;
+}
+
+a:hover {
+    color: var(--color-accent);
+}
+
+img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+    border-radius: var(--radius-md);
+}
+
+/* ---------------------------------------------------------
+   2. TYPOGRAPHY
+--------------------------------------------------------- */
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    font-family: var(--font-head);
+    font-weight: 700;
+    line-height: 1.1;
+    margin-bottom: 0.5em;
+    color: var(--color-text-main);
+}
+
+h1 {
+    font-size: 4.5rem;
+    letter-spacing: -0.03em;
+}
+
+/* Huge Array H1 */
+h2 {
+    font-size: 2.5rem;
+}
+
+h3 {
+    font-size: 1.5rem;
+}
+
+/* ---------------------------------------------------------
+   3. LAYOUT & HERO
+--------------------------------------------------------- */
+.container {
+    max-width: var(--container);
+    margin: 0 auto;
+    padding: 0 24px;
+}
+
+/* Header */
+.site-header {
+    padding: 30px 0;
+    position: sticky;
+    /* Sticky header like demo */
+    top: 0;
+    background: rgba(255, 255, 255, 0.9);
+    backdrop-filter: blur(10px);
+    z-index: 100;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+.site-branding {
+    font-family: var(--font-head);
+    font-weight: 800;
+    font-size: 1.5rem;
+    letter-spacing: -1px;
+}
+
+.site-branding a:hover {
+    opacity: 0.7;
+}
+
+/* ---------------------------------------------------------
+   2b. NAVIGATION MENU
+--------------------------------------------------------- */
+.main-navigation {
+    margin-top: 15px;
+    width: 100%;
+}
+
+.main-navigation ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    /* Center menu items */
+    gap: 24px;
+}
+
+.main-navigation li {
+    margin: 0;
+}
+
+.main-navigation a {
+    text-decoration: none;
+    font-family: 'Syne', sans-serif;
+    font-weight: 700;
+    font-size: 0.95rem;
+    color: var(--color-text-main);
+    text-transform: uppercase;
+    letter-spacing: 0.02em;
+    transition: color 0.2s ease, opacity 0.2s ease;
+    opacity: 0.6;
+    /* Slight fade for inactive items */
+}
+
+.main-navigation a:hover {
+    color: var(--color-accent);
+    opacity: 1;
+}
+
+/* Current Item Styling */
+.main-navigation .current-menu-item>a {
+    color: var(--color-text-main);
+    opacity: 1;
+    border-bottom: 2px solid var(--color-accent);
+}
+
+/* Mobile Menu Tweak */
+@media (max-width: 768px) {
+    .main-navigation ul {
+        gap: 16px;
+        padding-bottom: 15px;
+    }
+
+    .main-navigation a {
+        font-size: 0.85rem;
+    }
+}
+
+/* Hero Gradient Background */
+.hero-wrapper {
+    padding: 100px 0 80px;
+    /* Generous spacing */
+    position: relative;
+    overflow: hidden;
+    margin-bottom: 60px;
+}
+
+/* The Radial Glow */
+.hero-wrapper::before {
+    content: '';
+    position: absolute;
+    top: -60%;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 60vw;
+    height: 60vw;
+    background: radial-gradient(circle, rgba(135, 206, 235, 0.3) 0%, rgba(215, 175, 253, 0.1) 40%, rgba(255, 255, 255, 0) 70%);
+    z-index: -1;
+    filter: blur(80px);
+    /* Soft blur */
+}
+
+.hero-title {
+    max-width: 900px;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.hero-desc {
+    text-align: center;
+    font-size: 1.3rem;
+    color: var(--color-text-light);
+    max-width: 600px;
+    margin: 24px auto 0;
+}
+
+/* ---------------------------------------------------------
+   4. HOMEPAGE & LISTS
+--------------------------------------------------------- */
+
+/* Section A: Category Cards (Colorful) */
+.category-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 30px;
+    margin-bottom: 100px;
+}
+
+.cat-card {
+    background: #F9F9F9;
+    /* Fallback */
+    border-radius: var(--radius-lg);
+    padding: 50px 30px;
+    text-align: center;
+    transition: all 0.2s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    box-shadow: var(--shadow-card);
+    /* Inset Shadow */
+    border: 1px solid rgba(0, 0, 0, 0.05);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+}
+
+/* Specific Pastel Colors */
+.cat-card.color-1 {
+    background-color: var(--color-pastel-purple);
+}
+
+.cat-card.color-2 {
+    background-color: var(--color-pastel-cyan);
+}
+
+.cat-card.color-3 {
+    background-color: var(--color-pastel-yellow);
+}
+
+.cat-card.color-4 {
+    background-color: var(--color-pastel-red);
+}
+
+.cat-card:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-card-hover);
+}
+
+.cat-title {
+    font-size: 1.8rem;
+    margin-bottom: 10px;
+    font-weight: 800;
+    letter-spacing: -0.02em;
+}
+
+.cat-count {
+    font-size: 0.85rem;
+    color: rgba(0, 0, 0, 0.6);
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    background: rgba(255, 255, 255, 0.4);
+    padding: 4px 12px;
+    border-radius: 99px;
+}
+
+/* Section B: Latest Posts (List Layout) */
+/* (Replaced by Update below) */
+.posts-list {
+    max-width: 800px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+}
+
+.post-item {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 20px;
+    padding: 50px 0;
+    border-top: 1px solid rgba(0, 0, 0, 0.08);
+    /* Subtle border */
+}
+
+.post-item-title {
+    font-size: 2rem;
+    margin-bottom: 15px;
+    font-weight: 800;
+    letter-spacing: -0.02em;
+}
+
+.post-item-excerpt {
+    color: var(--color-text-light);
+    font-size: 1.15rem;
+    margin-bottom: 25px;
+    line-height: 1.7;
+}
+
+/* ---------------------------------------------------------
+   5. SINGLE POST
+--------------------------------------------------------- */
+/* Note: Main container is now fluid, with content-wrapper-context of 720px */
+.single-cats {
+    display: inline-block;
+    background: var(--color-pastel-cyan);
+    padding: 6px 16px;
+    border-radius: var(--radius-sm);
+    box-shadow: var(--shadow-card);
+    font-weight: 700;
+    font-size: 0.85rem;
+    margin-bottom: 25px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.single-cats a {
+    text-decoration: none !important;
+}
+
+.entry-content {
+    font-size: 1.15rem;
+    line-height: 1.8;
+}
+
+.entry-content p {
+    margin-bottom: 2em;
+}
+
+.entry-content h2 {
+    font-size: 2rem;
+    margin-top: 2.5em;
+    margin-bottom: 1em;
+    letter-spacing: -0.02em;
+    position: relative;
+}
+
+/* Post Content Links */
+.entry-content a {
+    color: var(--color-accent);
+    text-decoration: underline;
+    text-decoration-thickness: 2px;
+    text-underline-offset: 3px;
+    font-weight: 600;
+}
+
+.entry-content a:hover {
+    color: var(--color-text-main);
+    background: rgba(135, 206, 235, 0.2);
+    /* Soft highlight on hover */
+    border-radius: 4px;
+}
+
+/* ---------------------------------------------------------
+   6. FOOTER
+--------------------------------------------------------- */
+.site-footer {
+    background: #FAFAFA;
+    padding: 80px 0;
+    text-align: center;
+    border-top: 1px solid rgba(0, 0, 0, 0.05);
+    font-size: 0.95rem;
+    color: #999;
+}
+
+/* ---------------------------------------------------------
+   7. SOCIAL SHARE
+--------------------------------------------------------- */
+.share-box {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    flex-wrap: wrap;
+}
+
+.share-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 44px;
+    height: 44px;
+    background: #fff;
+    border: 1px solid #E6E6E6;
+    border-radius: 50px;
+    /* Pill/Circle */
+    color: #262626;
+    font-size: 18px;
+    transition: all 0.2s ease;
+}
+
+.share-btn:hover {
+    transform: translateY(-2px);
+    border-color: var(--color-accent);
+    color: var(--color-accent);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+}
+
+/* ---------------------------------------------------------
+   8. TABLE OF CONTENTS
+--------------------------------------------------------- */
+.toc-widget {
+    display: none;
+    /* Mobile default: hidden */
+}
+
+@media (min-width: 1280px) {
+
+    /* Check screen width */
+    .toc-widget {
+        display: block;
+        position: absolute;
+        width: 260px;
+        /*
+           We want this to be LEFT of the 720px content.
+           Since TOC is inside .content-wrapper-context (720px wide), 
+           left: -300px (260px width + 40px gap) will put it outside.
+        */
+        left: -320px;
+        top: 0;
+        height: 100%;
+        text-align: right;
+        /* Align text towards content? Or left. */
+        text-align: left;
+    }
+
+    .toc-widget-inner {
+        position: sticky;
+        top: 120px;
+    }
+}
+
+.toc-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.toc-item {
+    margin-bottom: 10px;
+}
+
+.toc-item a {
+    display: block;
+    font-size: 0.9rem;
+    color: #888;
+    line-height: 1.4;
+    padding: 4px 0;
+    transition: color 0.2s;
+}
+
+.toc-item a:hover,
+.toc-item.active>a {
+    color: var(--color-text-main);
+    font-weight: 700;
+}
+
+/* ---------------------------------------------------------
+   9. EXTRAS
+--------------------------------------------------------- */
+.profile-img-large {
+    border-radius: 50%;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+    display: block;
+    margin: 0 auto;
+}
+
+/* Mobile */
+@media (max-width: 768px) {
+    .category-grid {
+        grid-template-columns: 1fr;
+    }
+
+    h1 {
+        font-size: 2.8rem;
+    }
+
+    .hero-wrapper {
+        padding: 60px 0 40px;
+    }
+
+    .single-title {
+        font-size: 2rem;
+    }
+}
+
+/* ---------------------------------------------------------
+   10. UPDATED POST GRID (AUTHOR LEFT) - REAPPLIED
+--------------------------------------------------------- */
+.posts-list {
+    max-width: 900px;
+    margin: 0 auto;
+}
+
+.post-item {
+    display: grid;
+    /* 3 Columns: Author | Content | Image (if exists) */
+    grid-template-columns: 80px 1fr 220px;
+    gap: 40px;
+    padding: 50px 0;
+    border-top: 1px solid rgba(0, 0, 0, 0.08);
+    align-items: center;
+    /* Vertically center content */
+}
+
+/* If no thumbnail, fallback to 2 columns */
+.post-item:not(:has(.post-image-col)) {
+    grid-template-columns: 80px 1fr;
+}
+
+.post-list-thumb {
+    display: block;
+    width: 100%;
+    aspect-ratio: 16/10;
+    /* Landscape rectangle */
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+    transition: transform 0.2s;
+}
+
+.post-list-thumb:hover {
+    transform: translateY(-4px);
+}
+
+/* Override for Author Archive (No redundant avatar) */
+body.author .post-item {
+    grid-template-columns: 1fr !important;
+}
+
+/* Remove padding/margin associated with the column if any */
+
+.post-author-col {
+    padding-top: 10px;
+    /* Align with title */
+}
+
+.home-author-img {
+    border-radius: 50%;
+    width: 60px;
+    height: 60px;
+    display: block;
+    margin: 0 auto 10px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+    transition: transform 0.2s;
+}
+
+.post-author-col a:hover .home-author-img {
+    transform: scale(1.05);
+}
+
+.home-author-name {
+    display: block;
+    font-size: 0.75rem;
+    font-weight: 700;
+    color: #999;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    text-align: center;
+}
+
+@media (max-width: 900px) {
+    .post-item {
+        grid-template-columns: 1fr !important;
+        /* Stack on mobile */
+        gap: 15px;
+        text-align: center;
+    }
+
+    .post-author-col {
+        margin-bottom: 15px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 10px;
+        order: 1;
+        /* Author first */
+    }
+
+    .post-image-col {
+        order: 2;
+        /* Image second */
+        margin-bottom: 20px;
+    }
+
+    .post-content {
+        order: 3;
+        /* Content last */
+    }
+
+    .home-author-img {
+        margin: 0;
+        width: 40px;
+        height: 40px;
+    }
+
+    .post-meta-row {
+        justify-content: center;
+    }
+}
+
+/* ---------------------------------------------------------
+   11. COMMENTS - PREMIUM STYLE
+--------------------------------------------------------- */
+.comments-area {
+    margin-top: 60px;
+    padding-top: 40px;
+}
+
+.comments-title {
+    font-size: 1.8rem;
+    margin-bottom: 40px;
+    letter-spacing: -0.02em;
+}
+
+.comment-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.comment-body {
+    background: #FAFAFA;
+    border-radius: var(--radius-lg);
+    padding: 30px;
+    margin-bottom: 30px;
+    position: relative;
+    border: 1px solid rgba(0, 0, 0, 0.03);
+    transition: transform 0.2s;
+}
+
+.comment-body:hover {
+    transform: translateY(-2px);
+    background: #FFF;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+}
+
+.comment-meta {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    margin-bottom: 15px;
+}
+
+.avatar {
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+}
+
+.fn {
+    font-weight: 700;
+    font-size: 1.1rem;
+    font-family: var(--font-head);
+    color: var(--color-text-main);
+}
+
+.comment-metadata {
+    font-size: 0.85rem;
+    color: #999;
+}
+
+.comment-metadata a {
+    color: #999;
+}
+
+.comment-content p {
+    font-size: 1.05rem;
+    line-height: 1.6;
+    color: var(--color-text-light);
+    margin-bottom: 1em;
+}
+
+/* Reply Button */
+.reply {
+    text-align: right;
+}
+
+.comment-reply-link {
+    display: inline-block;
+    padding: 6px 16px;
+    background: #fff;
+    border: 1px solid #ddd;
+    border-radius: 50px;
+    font-size: 0.85rem;
+    font-weight: 700;
+    color: var(--color-text-main);
+    transition: all 0.2s;
+}
+
+.comment-reply-link:hover {
+    background: var(--color-text-main);
+    color: #fff;
+    border-color: var(--color-text-main);
+}
+
+/* Comment Form */
+.comment-form {
+    background: #fff;
+    padding: 40px;
+    border-radius: var(--radius-lg);
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.05);
+    margin-top: 60px;
+}
+
+.comment-form p {
+    margin-bottom: 20px;
+}
+
+.comment-form input[type="text"],
+.comment-form input[type="email"],
+.comment-form textarea {
+    width: 100%;
+    padding: 16px;
+    border: 1px solid #eee;
+    background: #FAFAFA;
+    border-radius: var(--radius-md);
+    font-family: var(--font-body);
+    font-size: 1rem;
+    transition: 0.2s;
+    outline: none;
+}
+
+.comment-form input:focus,
+.comment-form textarea:focus {
+    background: #fff;
+    border-color: var(--color-accent);
+    box-shadow: 0 0 0 4px rgba(135, 206, 235, 0.1);
+}
+
+.submit-btn {
+    background: var(--color-text-main);
+    color: #fff;
+    padding: 14px 30px;
+    border: none;
+    border-radius: 50px;
+    font-weight: 700;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+.submit-btn:hover {
+    background: var(--color-accent);
+    transform: translateY(-2px);
+    box-shadow: 0 10px 20px rgba(135, 206, 235, 0.3);
+}
+
+/* Threading indentation */
+.children {
+    list-style: none;
+    padding-left: 40px;
+    border-left: 2px solid rgba(0, 0, 0, 0.05);
+}
+
+@media(max-width: 600px) {
+    .children {
+        padding-left: 15px;
+    }
+}
+
+/* ---------------------------------------------------------
+   12. TAGS - PREMIUM PILLS
+--------------------------------------------------------- */
+.post-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-top: 40px;
+    padding-top: 30px;
+    border-top: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+.post-tags a {
+    display: inline-block;
+    background: #F3F4F6;
+    /* Neutral pill background */
+    color: var(--color-text-light);
+    /* Darker text for contrast */
+    padding: 8px 18px;
+    border-radius: 50px;
+    /* Full pill shape */
+    font-size: 0.85rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    transition: all 0.2s ease;
+    text-decoration: none;
+    border: 1px solid transparent;
+    /* Prepare for border transition */
+}
+
+/* Hover Effect - Pop like the categories */
+.post-tags a:hover {
+    background: var(--color-accent);
+    color: #fff;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(135, 206, 235, 0.4);
+    /* Soft shadow based on accent */
+}
+
+/* Add a label potentially? Optional based on design preference. 
+   For now, just the tags themselves are enough. */
+
+/* ---------------------------------------------------------
+   13. MOBILE RESPONSIVENESS FIXES (v10)
+--------------------------------------------------------- */
+@media (max-width: 768px) {
+
+    /* 1. Container Padding - Force horizontal space */
+    .single-container {
+        padding-left: 20px !important;
+        padding-right: 20px !important;
+        box-sizing: border-box;
+        width: 100% !important;
+        overflow-x: hidden;
+    }
+
+    /* 2. Boxed Content Effect (White Card Style) */
+    .content-wrapper-context {
+        background: #fff;
+        padding: 25px !important;
+        border-radius: 16px;
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
+        margin: 0 auto;
+        width: 100% !important;
+        max-width: 100% !important;
+        box-sizing: border-box;
+    }
+
+    /* 3. Text & Title Adjustment */
+    .entry-content {
+        font-size: 1.05rem;
+        line-height: 1.6;
+        padding: 0;
+    }
+
+    .single-title {
+        font-size: 2rem !important;
+        padding: 0 10px;
+    }
+}
+
+/* ---------------------------------------------------------
+   14. FOOTER MENU
+--------------------------------------------------------- */
+.footer-navigation {
+    margin-bottom: 20px;
+}
+
+.footer-navigation ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+}
+
+.footer-navigation li {
+    margin: 0;
+}
+
+.footer-navigation a {
+    text-decoration: none;
+    color: var(--color-text-light);
+    font-family: var(--font-body);
+    /* Standard font */
+    font-size: 0.85rem;
+    font-weight: 600;
+    opacity: 0.8;
+    transition: opacity 0.2s;
+}
+
+.footer-navigation a:hover {
+    color: var(--color-accent);
+    opacity: 1;
+}
+
+/* ---------------------------------------------------------
+   WordPress Required Classes
+--------------------------------------------------------- */
+.alignleft { float: left; margin-right: 1.5em; margin-bottom: 1em; }
+.alignright { float: right; margin-left: 1.5em; margin-bottom: 1em; }
+.aligncenter { display: block; margin-left: auto; margin-right: auto; margin-bottom: 1em; }
+.alignwide { margin-left: -80px; margin-right: -80px; }
+.alignfull { margin-left: calc(50% - 50vw); margin-right: calc(50% - 50vw); width: 100vw; }
+
+.wp-caption { max-width: 100%; margin-bottom: 1.5em; }
+.wp-caption img { display: block; width: 100%; }
+.wp-caption-text { font-size: 0.85rem; color: var(--color-text-light); text-align: center; padding: 6px 0; }
+
+.sticky { position: relative; }
+
+.gallery-caption { font-size: 0.85rem; color: var(--color-text-light); }
+
+.bypostauthor > .comment-body { border-left: 3px solid var(--color-accent); padding-left: 12px; }
+
+.screen-reader-text {
+    border: 0;
+    clip: rect(1px, 1px, 1px, 1px);
+    clip-path: inset(50%);
+    height: 1px;
+    margin: -1px;
+    overflow: hidden;
+    padding: 0;
+    position: absolute;
+    width: 1px;
+    word-wrap: normal !important;
+}
