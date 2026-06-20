@@ -1,6 +1,6 @@
 # Lumio — Free Minimal WordPress Theme
 
-**Version:** 1.0.0 · **License:** GPL v2 or later · **Author:** [Zahid Abbasi](https://xuro.net)
+**Version:** 1.0.3 · **License:** GPL v2 or later · **Author:** [Zahid Abbasi](https://xuro.net)
 
 A clean, fast WordPress theme built for high-performance blogs. Bold Syne typography, a radial glow hero section, pastel category cards, and a floating table of contents — with zero jQuery and no bloat.
 
