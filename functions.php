@@ -34,6 +34,9 @@ function lumio_scripts() {
     // Main stylesheet
     wp_enqueue_style( 'lumio-style', get_stylesheet_uri(), array(), wp_get_theme()->get( 'Version' ) );
 
+    // Mobile menu toggle (everywhere)
+    wp_enqueue_script( 'lumio-menu-toggle', get_template_directory_uri() . '/js/menu-toggle.js', array(), wp_get_theme()->get( 'Version' ), true );
+
     // TOC + share scripts (single posts only)
     if ( is_single() ) {
         wp_enqueue_script( 'lumio-toc', get_template_directory_uri() . '/js/toc.js', array(), wp_get_theme()->get( 'Version' ), true );

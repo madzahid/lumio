@@ -22,7 +22,13 @@
                 <?php endif; ?>
             </div>
 
-            <nav class="main-navigation" role="navigation" aria-label="<?php esc_attr_e( 'Primary Menu', 'lumio' ); ?>">
+            <button class="menu-toggle" aria-controls="primary-menu" aria-expanded="false" aria-label="<?php esc_attr_e( 'Toggle menu', 'lumio' ); ?>">
+                <span class="menu-toggle-bar"></span>
+                <span class="menu-toggle-bar"></span>
+                <span class="menu-toggle-bar"></span>
+            </button>
+
+            <nav class="main-navigation" id="site-navigation" role="navigation" aria-label="<?php esc_attr_e( 'Primary Menu', 'lumio' ); ?>">
                 <?php
                 wp_nav_menu( array(
                     'theme_location' => 'primary',
