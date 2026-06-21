@@ -3,86 +3,86 @@
 <!-- Hero Section with Radial Glow -->
 <div class="hero-wrapper">
     <div class="container">
-        <h2 class="hero-title"><?php bloginfo('description'); ?></h2>
-        <p class="hero-desc"><?php bloginfo('description'); ?></p>
+        <h2 class="hero-title"><?php bloginfo( 'description' ); ?></h2>
+        <p class="hero-desc"><?php bloginfo( 'name' ); ?> is your premier source for Artificial Intelligence news, Cybersecurity alerts, and Consumer Tech reviews. We decode complex innovations for professionals and enthusiasts alike.</p>
     </div>
 </div>
 
 <main class="container">
-    
-    <!-- Section A: Category Cards (3 Column) -->
-    <!-- We simulate this by fetching actual categories -->
+
+    <!-- Category Cards (3 Column) -->
     <div class="category-grid">
         <?php
-        $categories = get_categories(array(
+        $lumio_categories = get_categories( array(
             'orderby' => 'count',
             'order'   => 'DESC',
-            'number'  => 6
-        ));
-        $i = 0;
-        foreach( $categories as $category ) {
-            $i++;
-            // Cycle through colors 1-4
-            $color_class = 'color-' . (($i - 1) % 4 + 1);
-            $cat_link = get_category_link($category->term_id);
+            'number'  => 6,
+        ) );
+        $lumio_i = 0;
+        foreach ( $lumio_categories as $lumio_cat ) {
+            $lumio_i++;
+            $lumio_color = 'color-' . ( ( $lumio_i - 1 ) % 4 + 1 );
+            $lumio_link  = get_category_link( $lumio_cat->term_id );
             ?>
-            <a href="<?php echo esc_url($cat_link); ?>" class="cat-card <?php echo $color_class; ?>">
-                <h3 class="cat-title"><?php echo esc_html($category->name); ?></h3>
-                <span class="cat-count"><?php echo esc_html($category->count); ?> Articles</span>
+            <a href="<?php echo esc_url( $lumio_link ); ?>" class="cat-card <?php echo esc_attr( $lumio_color ); ?>">
+                <h3 class="cat-title"><?php echo esc_html( $lumio_cat->name ); ?></h3>
+                <span class="cat-count"><?php echo esc_html( $lumio_cat->count ); ?> Articles</span>
             </a>
             <?php
         }
         ?>
     </div>
 
-    <!-- Section B: Latest Posts (List Layout) -->
+    <!-- Latest Posts -->
     <div class="posts-list">
-        <h3 style="margin-bottom: 30px; font-size: 1.2rem; text-transform: uppercase; letter-spacing: 1px; color: #888;">Latest Stories</h3>
-        
-        <?php if (have_posts()) : while (have_posts()) : the_post(); ?>
-            <article class="post-item">
-                
+        <h3 class="section-heading"><?php esc_html_e( 'Latest Stories', 'lumio' ); ?></h3>
+
+        <?php if ( have_posts() ) : while ( have_posts() ) : the_post(); ?>
+            <article id="post-<?php the_ID(); ?>" <?php post_class( 'post-item' ); ?>>
+
                 <!-- Author Column (Left) -->
-                <div class="post-author-col" style="text-align: center;">
-                    <a href="<?php echo get_author_posts_url(get_the_author_meta('ID')); ?>" style="text-decoration: none;">
-                        <?php echo get_avatar(get_the_author_meta('ID'), 60, '', 'Author', array('class' => 'home-author-img')); ?>
+                <div class="post-author-col">
+                    <a href="<?php echo esc_url( get_author_posts_url( get_the_author_meta( 'ID' ) ) ); ?>">
+                        <?php echo get_avatar( get_the_author_meta( 'ID' ), 60, '', esc_attr( get_the_author() ), array( 'class' => 'home-author-img' ) ); ?>
                         <span class="home-author-name"><?php the_author(); ?></span>
                     </a>
                 </div>
 
                 <div class="post-content">
-                    <div class="post-meta-row" style="display: flex; align-items: center; gap: 10px; margin-bottom: 10px;">
-                        <span style="color: var(--color-accent); font-weight: 800; text-transform: uppercase; font-size: 0.8rem; letter-spacing: 0.5px;">
-                            <?php $cats = get_the_category(); echo !empty($cats) ? esc_html($cats[0]->name) : 'Story'; ?>
+                    <div class="post-meta-row">
+                        <span class="post-cat-label">
+                            <?php
+                            $lumio_post_cats = get_the_category();
+                            echo ! empty( $lumio_post_cats ) ? esc_html( $lumio_post_cats[0]->name ) : esc_html__( 'Story', 'lumio' );
+                            ?>
                         </span>
-                        <span style="color: #ccc;">&bull;</span>
-                        <span style="color: var(--color-text-light); font-weight: 400; font-size: 0.9rem;">
-                            <?php echo get_the_date(); ?>
-                        </span>
+                        <span class="meta-sep">&bull;</span>
+                        <span class="post-date-label"><?php echo esc_html( get_the_date() ); ?></span>
                     </div>
-                    
+
                     <h2 class="post-item-title">
                         <a href="<?php the_permalink(); ?>"><?php the_title(); ?></a>
                     </h2>
-                    
+
                     <div class="post-item-excerpt">
-                        <?php echo wp_trim_words(get_the_excerpt(), 25); ?>
+                        <?php echo wp_trim_words( get_the_excerpt(), 25 ); ?>
                     </div>
                 </div>
 
-                <!-- Featured Image Column (Right) -->
-                <?php if (has_post_thumbnail()) : ?>
+                <!-- Featured Image (Right) -->
+                <?php if ( has_post_thumbnail() ) : ?>
                     <div class="post-image-col">
                         <a href="<?php the_permalink(); ?>" class="post-list-thumb">
-                            <?php the_post_thumbnail('medium_large', array('style' => 'width:100%; height:100%; object-fit:cover; border-radius:12px;')); ?>
+                            <?php the_post_thumbnail( 'medium_large', array( 'class' => 'post-list-img' ) ); ?>
                         </a>
                     </div>
                 <?php endif; ?>
+
             </article>
         <?php endwhile; endif; ?>
     </div>
 
-    <div class="pagination" style="margin-top: 60px; text-align: center;">
+    <div class="pagination">
         <?php the_posts_pagination(); ?>
     </div>
 

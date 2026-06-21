@@ -10,20 +10,26 @@
 
     <footer class="site-footer">
         <div class="container">
-            <nav class="footer-navigation">
+            <nav class="footer-navigation" aria-label="<?php esc_attr_e( 'Footer Menu', 'lumio' ); ?>">
                 <?php
-                wp_nav_menu(array(
+                wp_nav_menu( array(
                     'theme_location' => 'footer',
                     'menu_id'        => 'footer-menu',
                     'container'      => false,
                     'depth'          => 1,
                     'fallback_cb'    => false,
-                ));
+                ) );
                 ?>
             </nav>
-            <p>&copy; <?php echo esc_html( date( 'Y' ) ); ?> <?php bloginfo('name'); ?>.</p>
-            <p style="font-size: 0.8em; margin-top: 10px; opacity: 0.7;">
-                Theme Designed and Coded by <a href="https://xuro.net" target="_blank" style="color: #525252; text-decoration: underline;">Xuro.Net</a>
+            <p>&copy; <?php echo esc_html( gmdate( 'Y' ) ); ?> <?php bloginfo( 'name' ); ?>.</p>
+            <p class="footer-credit">
+                <?php
+                printf(
+                    /* translators: %s: link to Xuro.Net */
+                    esc_html__( 'Theme Designed and Coded by %s', 'lumio' ),
+                    '<a href="https://xuro.net" target="_blank" rel="noopener noreferrer">Xuro.Net</a>'
+                );
+                ?>
             </p>
         </div>
     </footer>
