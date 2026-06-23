@@ -69,9 +69,23 @@ add_action( 'widgets_init', 'lumio_widgets_init' );
 
 // Robots meta via hook
 function lumio_robots_meta() {
-    echo '<meta name="robots" content="max-image-preview:large">' . "\n";
+    // Noindex the demo site to prevent demo content from competing in search
+    if ( isset( $_SERVER['HTTP_HOST'] ) && strpos( $_SERVER['HTTP_HOST'], 'lumio.xuro.net' ) !== false ) {
+        echo '<meta name="robots" content="noindex,nofollow">' . "\n";
+    } else {
+        echo '<meta name="robots" content="max-image-preview:large">' . "\n";
+    }
 }
 add_action( 'wp_head', 'lumio_robots_meta' );
+
+// Block demo site from search engines via robots.txt filter
+function lumio_demo_robots( $output ) {
+    if ( isset( $_SERVER['HTTP_HOST'] ) && strpos( $_SERVER['HTTP_HOST'], 'lumio.xuro.net' ) !== false ) {
+        return "User-agent: *\nDisallow: /\n";
+    }
+    return $output;
+}
+add_filter( 'robots_txt', 'lumio_demo_robots', 99 );
 
 // Remove emoji bloat
 remove_action( 'wp_head', 'print_emoji_detection_script', 7 );
