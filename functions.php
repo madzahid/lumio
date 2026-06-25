@@ -18,6 +18,15 @@ function lumio_setup() {
     add_theme_support( 'custom-background', array(
         'default-color' => 'ffffff',
     ) );
+    add_theme_support( 'custom-header', array(
+        'default-image'      => '',
+        'width'              => 1920,
+        'height'             => 400,
+        'flex-height'        => true,
+        'flex-width'         => true,
+        'default-text-color' => '000000',
+        'header-text'        => true,
+    ) );
     add_editor_style( 'style.css' );
 
     register_nav_menus( array(
@@ -52,6 +61,36 @@ function lumio_scripts() {
     }
 }
 add_action( 'wp_enqueue_scripts', 'lumio_scripts' );
+
+// Block styles
+function lumio_register_block_styles() {
+    register_block_style( 'core/button', array(
+        'name'  => 'lumio-outline',
+        'label' => __( 'Outline', 'lumio' ),
+    ) );
+    register_block_style( 'core/quote', array(
+        'name'  => 'lumio-large',
+        'label' => __( 'Large', 'lumio' ),
+    ) );
+}
+add_action( 'init', 'lumio_register_block_styles' );
+
+// Block patterns
+function lumio_register_block_patterns() {
+    register_block_pattern_category( 'lumio', array(
+        'label' => __( 'Lumio', 'lumio' ),
+    ) );
+
+    register_block_pattern(
+        'lumio/hero-text',
+        array(
+            'title'      => __( 'Hero with tagline', 'lumio' ),
+            'categories' => array( 'lumio' ),
+            'content'    => '<!-- wp:group {"align":"full","className":"lumio-hero-pattern"} --><div class="wp-block-group alignfull lumio-hero-pattern"><!-- wp:heading {"level":1} --><h1>' . esc_html__( 'Your headline here', 'lumio' ) . '</h1><!-- /wp:heading --><!-- wp:paragraph --><p>' . esc_html__( 'Add a short description that draws readers in.', 'lumio' ) . '</p><!-- /wp:paragraph --><!-- wp:buttons --><div class="wp-block-buttons"><!-- wp:button --><div class="wp-block-button"><a class="wp-block-button__link wp-element-button">' . esc_html__( 'Get started', 'lumio' ) . '</a></div><!-- /wp:button --></div><!-- /wp:buttons --></div><!-- /wp:group -->',
+        )
+    );
+}
+add_action( 'init', 'lumio_register_block_patterns' );
 
 // Widget area
 function lumio_widgets_init() {

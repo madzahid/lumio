@@ -66,6 +66,11 @@ style.css. You can override them in Appearance > Customize > Additional CSS.
 
 == Changelog ==
 
+= 1.0.10 =
+* Added register_block_style for Button and Quote blocks
+* Added register_block_pattern with hero text pattern
+* Added add_theme_support for custom-header
+
 = 1.0.9 =
 * Added skip to content link for accessibility
 * Fixed search modal keyboard focus trap
