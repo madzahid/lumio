@@ -9,6 +9,17 @@ License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
 A clean, minimal WordPress theme for high-performance blogs.
 
+== License ==
+
+Lumio is free software: you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation, either version 2 of the License, or (at your option) any later version.
+
+Lumio is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public License for more details.
+
+License: GNU General Public License v2 or later
+License URI: https://www.gnu.org/licenses/gpl-2.0.html
+
+All files within this theme, including PHP, CSS, and JavaScript, are licensed under the GNU GPL v2 or later unless otherwise stated in the Credits section below.
+
 == Description ==
 
 Lumio is a clean, minimal WordPress theme built for high-performance blogs.
@@ -24,7 +35,7 @@ Features:
 * Floating table of contents on single posts (auto-generated from headings)
 * Social share buttons on single posts
 * Custom local avatar support (no plugin required)
-* Built-in SEO meta fallback (Open Graph, description)
+* Compatible with Rank Math and Yoast SEO plugins
 * Primary and footer navigation menus
 * Threaded comments support
 * Featured image support
@@ -54,6 +65,14 @@ The pastel colours cycle through four CSS variables (--color-pastel-purple,
 style.css. You can override them in Appearance > Customize > Additional CSS.
 
 == Changelog ==
+
+= 1.0.9 =
+* Added skip to content link for accessibility
+* Fixed search modal keyboard focus trap
+* Improved mobile menu keyboard navigation (Escape key support)
+* Fixed long title horizontal overflow with word-break CSS
+* Removed SEO meta output from theme (belongs in plugins)
+* Added explicit GPL license statement to readme.txt
 
 = 1.0.0 =
 * Initial release.

@@ -8,7 +8,7 @@
     </div>
 </div>
 
-<main class="container">
+<main id="content" class="container">
 
     <!-- Category Cards (3 Column) -->
     <div class="category-grid">

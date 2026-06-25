@@ -8,6 +8,8 @@
 <body <?php body_class(); ?>>
 <?php wp_body_open(); ?>
 
+<a class="skip-link screen-reader-text" href="#content"><?php esc_html_e( 'Skip to content', 'lumio' ); ?></a>
+
     <header class="site-header">
         <div class="container">
             <div class="site-branding">

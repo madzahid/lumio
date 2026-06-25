@@ -1,6 +1,6 @@
 <?php get_header(); ?>
 
-<main class="single-container" style="max-width: 100%;"> <!-- Main wrapper -->
+<main id="content" class="single-container" style="max-width: 100%;">
     
     <?php while (have_posts()) : the_post(); ?>
         

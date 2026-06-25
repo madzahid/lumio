@@ -97,46 +97,8 @@ function lumio_downgrade_h1_to_h2( $content ) {
 }
 add_filter( 'the_content', 'lumio_downgrade_h1_to_h2' );
 
-// SEO fallback (when Rank Math / Yoast not active)
-function lumio_seo_fallback() {
-    if ( defined( 'RANK_MATH_VERSION' ) || defined( 'WPSEO_VERSION' ) ) {
-        return;
-    }
-
-    global $post;
-    $desc  = '';
-    $title = get_bloginfo( 'name' );
-    $url   = home_url();
-
-    if ( is_front_page() || is_home() ) {
-        $desc  = get_bloginfo( 'description' );
-        $title = get_bloginfo( 'name' ) . ' - ' . $desc;
-    } elseif ( is_single() || is_page() ) {
-        $desc  = get_the_excerpt();
-        $title = get_the_title() . ' - ' . get_bloginfo( 'name' );
-        $url   = get_permalink();
-    }
-
-    $desc = trim( strip_tags( $desc ) );
-    if ( empty( $desc ) ) {
-        $desc = get_bloginfo( 'description' );
-    }
-
-    echo "\n<!-- Lumio SEO Fallback -->\n";
-    echo '<meta name="description" content="' . esc_attr( $desc ) . '" />' . "\n";
-    echo '<meta property="og:title" content="' . esc_attr( $title ) . '" />' . "\n";
-    echo '<meta property="og:description" content="' . esc_attr( $desc ) . '" />' . "\n";
-    echo '<meta property="og:url" content="' . esc_url( $url ) . '" />' . "\n";
-    echo '<meta property="og:site_name" content="' . esc_attr( get_bloginfo( 'name' ) ) . '" />' . "\n";
-
-    if ( ! empty( $post->ID ) && has_post_thumbnail( $post->ID ) ) {
-        $img = wp_get_attachment_image_src( get_post_thumbnail_id( $post->ID ), 'large' );
-        if ( $img ) {
-            echo '<meta property="og:image" content="' . esc_url( $img[0] ) . '" />' . "\n";
-        }
-    }
-}
-add_action( 'wp_head', 'lumio_seo_fallback', 1 );
+// SEO meta (title, description, OG tags) is handled by SEO plugins (Rank Math, Yoast).
+// Themes should not output SEO meta — use a dedicated plugin instead.
 
 // Local avatars
 function lumio_get_custom_avatar( $avatar, $id_or_email, $args ) {
